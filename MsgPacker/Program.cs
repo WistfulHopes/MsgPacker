@@ -46,7 +46,7 @@ namespace MsgPacker
                     MessagePackReader reader = new MessagePackReader(File.ReadAllBytes(args[0]));
 
                     using (FileStream stream = new FileStream(outpath, FileMode.Create, FileAccess.Write))
-                    using (StreamWriter streamWriter = new StreamWriter(stream))
+                    using (StreamWriter streamWriter = new StreamWriter(stream, Encoding.GetEncoding("Shift-JIS")))
                     {
                         JsonTextWriter writer = new JsonTextWriter(streamWriter);
                         writer.Formatting = Formatting.Indented;
@@ -71,7 +71,7 @@ namespace MsgPacker
                         File.Delete(outpath);
 
                     using (FileStream inStream = new FileStream(args[0], FileMode.Open, FileAccess.Read))
-                        using (StreamReader inReader = new StreamReader(inStream))
+                        using (StreamReader inReader = new StreamReader(inStream, Encoding.GetEncoding("Shift-JIS")))
                     using (FileStream stream = new FileStream(outpath, FileMode.Create, FileAccess.Write))
                         using (BinaryWriter bWriter = new BinaryWriter(stream))
                     {
